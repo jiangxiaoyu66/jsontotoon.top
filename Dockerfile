@@ -15,8 +15,11 @@ RUN pnpm install --frozen-lockfile
 # Copy source code
 COPY . .
 
-# Build the application
+# Set build-time environment variables
+ENV NEXT_PUBLIC_SITE_URL=https://jsontotoon.top
 ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+# Build the application
 RUN pnpm build
 
 # Production stage
@@ -40,6 +43,7 @@ RUN pnpm install --prod --frozen-lockfile
 # Set environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
+ENV NEXT_PUBLIC_SITE_URL=https://jsontotoon.top
 
 EXPOSE 3000
 
