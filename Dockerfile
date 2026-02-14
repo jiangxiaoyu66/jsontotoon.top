@@ -16,6 +16,7 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # Build the application
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN pnpm build
 
 # Production stage
