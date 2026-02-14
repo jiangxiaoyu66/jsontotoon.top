@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to TOON Converter - Reduce LLM API Costs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        code, pre, textarea { font-family: 'JetBrains Mono', monospace !important; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        body { background: #0a0a0f; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(96, 165, 250, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(96, 165, 250, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="antialiased text-white relative overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                    <span class="text-lg">⚡</span>
+                </div>
+                <span class="text-xl font-bold gradient-text">JSON to TOON</span>
+            </div>
+            <div class="flex items-center gap-8 text-sm">
+                <a href="#converter" class="text-white/80 hover:text-white transition">Converter</a>
+                <a href="#" class="text-white/80 hover:text-white transition">About</a>
+                <a href="#" class="text-white/80 hover:text-white transition">Docs</a>
+                <a href="#" class="text-white/80 hover:text-white transition">Blog</a>
+                <a href="#" class="text-white/80 hover:text-white transition">FAQ</a>
+                <a href="#" class="text-white/80 hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Animated Background Orbs -->
+    <div class="glow-orb w-96 h-96 bg-blue-500 top-20 -left-48" style="animation-delay: 0s;"></div>
+    <div class="glow-orb w-80 h-80 bg-purple-500 top-1/3 right-0" style="animation-delay: 2s;"></div>
+    <div class="glow-orb w-72 h-72 bg-pink-500 bottom-1/4 left-1/4" style="animation-delay: 4s;"></div>
+
+    <!-- Hero + Converter -->
+    <section class="min-h-screen flex items-center px-4 pt-32 pb-20 relative grid-bg">
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass rounded-full text-sm font-medium mb-6 border border-blue-500/30">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span class="text-blue-300">Optimize Your LLM Costs</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-black mb-4 leading-none tracking-tight">
+                    <span class="gradient-text">JSON to TOON</span>
+                    <span class="text-white/90"> Converter</span>
+                </h1>
+                <p class="text-lg text-white/70 max-w-2xl mx-auto mb-8">
+                    Transform JSON into TOON format and <span class="text-green-400 font-semibold">reduce token usage by 30-50%</span>
+                </p>
+            </div>
+
+            <!-- Converter -->
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- JSON Input -->
+                <div class="glass rounded-3xl p-6 border border-white/10 hover:border-blue-500/50 transition-all">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <h3 class="text-lg font-bold">JSON Input</h3>
+                        </div>
+                        <button onclick="document.getElementById('jsonInput').value=''"
+                                class="text-sm text-blue-400 hover:text-blue-300 font-medium transition">
+                            Clear
+                        </button>
+                    </div>
+                    <textarea id="jsonInput"
+                              class="w-full h-64 p-4 bg-black/40 border border-white/10 rounded-2xl font-mono text-sm focus:border-blue-500 focus:outline-none resize-none text-white/90 placeholder-white/30"
+                              placeholder='{\n  "name": "Alice",\n  "age": 30,\n  "city": "Beijing"\n}'></textarea>
+                    <button onclick="convertJSON()"
+                            class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl font-bold hover:shadow-2xl hover:shadow-blue-500/30 transition-all hover:scale-[1.02] transform">
+                        Convert to TOON →
+                    </button>
+                </div>
+
+                <!-- TOON Output -->
+                <div class="glass rounded-3xl p-6 border border-purple-500/30 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                <h3 class="text-lg font-bold">TOON Output</h3>
+                            </div>
+                            <button onclick="copyToClipboard()"
+                                    class="text-sm text-purple-400 hover:text-purple-300 font-medium transition">
+                                Copy
+                            </button>
+                        </div>
+                        <textarea id="toonOutput" readonly
+                                  class="w-full h-64 p-4 bg-black/40 border border-purple-500/20 rounded-2xl font-mono text-sm resize-none text-white/90"></textarea>
+                        <div class="mt-4 flex items-center justify-between p-4 glass rounded-2xl border border-green-500/30">
+                            <span class="text-white/80 font-medium">Token Savings</span>
+                            <span id="savings" class="text-3xl font-black gradient-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Format Comparison -->
+    <section class="py-32 px-4 relative">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-black text-center mb-20 gradient-text">JSON vs TOON</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-10 rounded-3xl border border-white/10 relative group hover:border-white/20 transition-all">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-4 h-4 bg-slate-500 rounded-full"></div>
+                        <h3 class="text-3xl font-bold text-white/90">JSON</h3>
+                    </div>
+                    <pre class="bg-black/40 p-8 rounded-2xl text-sm overflow-x-auto border border-white/10"><code class="text-white/80">{
+  "name": "Alice",
+  "age": 30,
+  "city": "New York",
+  "skills": ["Python", "JavaScript"]
+}</code></pre>
+                    <div class="mt-8 space-y-3">
+                        <div class="flex items-center justify-between p-4 glass rounded-xl">
+                            <span class="text-white/60">Tokens</span>
+                            <span class="font-bold text-xl text-white/90">~45</span>
+                        </div>
+                        <p class="text-white/50 text-sm">Standard format with brackets and quotes</p>
+                    </div>
+                </div>
+
+                <div class="glass p-10 rounded-3xl border border-purple-500/50 relative group hover:border-purple-500/70 transition-all overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+                            <h3 class="text-3xl font-bold gradient-text">TOON</h3>
+                        </div>
+                        <pre class="bg-black/40 p-8 rounded-2xl text-sm overflow-x-auto border border-purple-500/30"><code class="text-white/80">name:Alice
+age:30
+city:New York
+skills:[Python,JavaScript]</code></pre>
+                        <div class="mt-8 space-y-3">
+                            <div class="flex items-center justify-between p-4 glass rounded-xl border border-green-500/30">
+                                <span class="text-white/60">Tokens</span>
+                                <span class="font-bold text-xl text-green-400">~25 (44% less!)</span>
+                            </div>
+                            <p class="text-white/50 text-sm">Minimal syntax, maximum efficiency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison Table -->
+    <section class="py-32 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-black text-center mb-20 gradient-text">Detailed Comparison</h2>
+
+            <div class="glass rounded-3xl overflow-hidden border border-white/10">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-white/10">
+                            <th class="px-8 py-6 text-left text-lg font-bold text-white/90">Feature</th>
+                            <th class="px-8 py-6 text-left text-lg font-bold gradient-text">TOON</th>
+                            <th class="px-8 py-6 text-left text-lg font-bold text-white/60">JSON</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-8 py-5 font-medium text-white/80">Token Usage</td>
+                            <td class="px-8 py-5 text-green-400 font-bold">30-50% less</td>
+                            <td class="px-8 py-5 text-white/60">Standard</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-8 py-5 font-medium text-white/80">Readability</td>
+                            <td class="px-8 py-5 font-semibold text-white/90">High</td>
+                            <td class="px-8 py-5 text-white/60">Medium</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-8 py-5 font-medium text-white/80">API Cost</td>
+                            <td class="px-8 py-5 text-green-400 font-bold">Lower</td>
+                            <td class="px-8 py-5 text-white/60">Higher</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-8 py-5 font-medium text-white/80">Nested Objects</td>
+                            <td class="px-8 py-5 text-white/90">✓ Supported</td>
+                            <td class="px-8 py-5 text-white/60">✓ Supported</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-8 py-5 font-medium text-white/80">Arrays</td>
+                            <td class="px-8 py-5 text-white/90">✓ Supported</td>
+                            <td class="px-8 py-5 text-white/60">✓ Supported</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-8 py-5 font-medium text-white/80">Processing Speed</td>
+                            <td class="px-8 py-5 text-green-400 font-bold">Faster</td>
+                            <td class="px-8 py-5 text-white/60">Standard</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-6xl font-black mb-6 gradient-text">Ready to Reduce API Costs?</h2>
+            <p class="text-2xl mb-12 text-white/70">Start converting your JSON to TOON format today</p>
+            <button onclick="document.getElementById('converter').scrollIntoView({behavior:'smooth'})"
+                    class="group px-12 py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl font-bold text-xl hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105 transform relative overflow-hidden">
+                <span class="relative z-10">Try Converter Now</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-white/40">&copy; 2024 JSON2TOON. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function convertJSON() {
+            const input = document.getElementById('jsonInput').value;
+            const output = document.getElementById('toonOutput');
+            const savingsEl = document.getElementById('savings');
+
+            try {
+                const json = JSON.parse(input);
+                const toon = jsonToToon(json);
+                output.value = toon;
+
+                const jsonTokens = input.length;
+                const toonTokens = toon.length;
+                const savings = Math.round((1 - toonTokens / jsonTokens) * 100);
+                savingsEl.textContent = savings + '%';
+            } catch (e) {
+                alert('Invalid JSON format. Please check your input.');
+            }
+        }
+
+        function jsonToToon(obj, indent = '') {
+            let result = '';
+            for (let key in obj) {
+                if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+                    result += indent + key + ':\n';
+                    result += jsonToToon(obj[key], indent + '  ');
+                } else if (Array.isArray(obj[key])) {
+                    result += indent + key + ':[' + obj[key].join(',') + ']\n';
+                } else {
+                    result += indent + key + ':' + obj[key] + '\n';
+                }
+            }
+            return result;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('toonOutput');
+            output.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+    </script>
+</body>
+</html>

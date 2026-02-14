@@ -1,7 +1,19 @@
-"use client";
+"use client"
 
-import { KitViewProvider } from "@styleglide/kit-view-provider";
+import { useEffect } from "react"
+
+declare global {
+  interface Window {
+    StyleGlide?: { init: () => void }
+  }
+}
 
 export function StyleGlideProvider() {
-  return <KitViewProvider />;
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.StyleGlide) {
+      window.StyleGlide.init()
+    }
+  }, [])
+
+  return null
 }

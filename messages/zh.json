@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "converter": "转换器",
+    "about": "关于",
+    "features": "功能特性",
+    "blog": "博客",
+    "faq": "常见问题"
+  },
+  "hero": {
+    "badge": "优化您的 LLM 成本",
+    "title": "JSON 转 TOON & TOON 转 JSON",
+    "subtitle": "免费转换器 - 减少 50% API 成本",
+    "description": "JSON 转 TOON 或 TOON 转 JSON，立即节省",
+    "savings": "OpenAI、ChatGPT、Claude API 成本 30-50%",
+    "tabJson2Toon": "JSON → TOON",
+    "tabToon2Json": "TOON → JSON",
+    "jsonInput": "JSON 输入",
+    "toonOutput": "TOON 输出",
+    "toonInput": "TOON 输入",
+    "jsonOutput": "JSON 输出",
+    "convertToToon": "转换为 TOON →",
+    "convertToJson": "转换为 JSON →",
+    "clear": "清空",
+    "copy": "复制",
+    "tokenSavings": "Token 节省",
+    "invalidJson": "无效的 JSON 格式，请检查您的输入。",
+    "invalidToon": "无效的 TOON 格式，请检查您的输入。",
+    "copied": "已复制到剪贴板！"
+  },
+  "about": {
+    "title": "什么是 TOON 格式？",
+    "description": "TOON 是 JSON 的极简文本表示，专为降低 LLM API token 消耗而设计，可减少 30-50% 的使用量。它保留所有 JSON 数据结构，同时使用更少字符，非常适合成本敏感的 AI 应用。"
+  },
+  "seo": {
+    "siteName": "JSON 转 TOON",
+    "title": "JSON 转 TOON & TOON 转 JSON – 减少 30-50% Token",
+    "description": "免费 JSON 转 TOON 和 TOON 转 JSON 转换器。减少 30-50% LLM API token 消耗，优化 ChatGPT、Claude、OpenAI 成本。无需注册，浏览器本地转换。",
+    "keywords": "JSON 转 TOON, TOON 转 JSON, json 转 toon 转换器, toon 转 json 转换器, json2toon, toon2json, TOON 格式, TOON 转换器, LLM 省 token, 降低大模型成本, 减少 token 消耗, API 成本优化, JSON 压缩工具, 精简 JSON 格式, OpenAI token 优化, ChatGPT API 成本, Claude token 节省, 免费 JSON 转换器, 免费在线 json 转 toon, 减少 50% LLM API token, ChatGPT API 成本优化器, OpenAI token 削减工具, AI 最小化 JSON token, LLM 开发者 token 优化, AI 创业公司降低 API 成本, token 高效 JSON 格式"
+  },
+  "faq": {
+    "title": "常见问题",
+    "q1": {
+      "question": "什么是 JSON 转 TOON 和 TOON 转 JSON？",
+      "answer": "JSON 转 TOON 将标准 JSON 转换为 TOON 格式，而 TOON 转 JSON 将其转回。两种转换都专为 LLM token 削减设计，可帮助您在使用 ChatGPT、Claude 或 OpenAI 时降低 30-50% 的 API 成本。"
+    },
+    "q2": {
+      "question": "如何减少 LLM token 使用量？",
+      "answer": "使用我们的 JSON 转 TOON 转换器可将 token 消耗减少 30-50%。TOON 格式在保留数据结构的同时删除不必要的字符，非常适合 LLM API 成本优化。"
+    },
+    "q3": {
+      "question": "能将 TOON 转回 JSON 吗？",
+      "answer": "可以！我们的 TOON 转 JSON 转换器可让您立即将 TOON 转回标准 JSON 格式。转换是无损的 - 所有数据结构和值都完美保留。"
+    },
+    "q4": {
+      "question": "能节省多少 LLM API 成本？",
+      "answer": "相比标准 JSON 通常可减少 30-50% 的 token。使用 JSON 转 TOON 转换器查看您实际数据的节省比例。这意味着 OpenAI、ChatGPT 和 Claude API 的成本大幅降低。"
+    },
+    "q5": {
+      "question": "如何为 LLM 优化 JSON？",
+      "answer": "使用 JSON 转 TOON 转换。我们的转换器自动删除冗余字符、最小化空白，并创建适合 LLM 应用的 token 高效表示。"
+    }
+  },
+  "blog": {
+    "title": "博客",
+    "description": "关于 TOON 格式与降低 LLM token 用量的更新、指南与技巧。",
+    "empty": "暂无文章。",
+    "back": "返回博客"
+  }
+}

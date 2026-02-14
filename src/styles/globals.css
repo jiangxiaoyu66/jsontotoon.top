@@ -172,6 +172,7 @@
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-float: float 8s ease-in-out infinite;
 
   @keyframes accordion-down {
     from {
@@ -187,6 +188,14 @@
     }
     to {
       height: 0;
+    }
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
     }
   }
 }
@@ -255,6 +264,15 @@
   [class*="border"] {
     @apply border-border;
   }
+
+  /* FAQ：纯 CSS 展开/收起，details[open] 控制箭头与内容显示，利于 SEO */
+  .faq-accordion .faq-summary::-webkit-details-marker,
+  .faq-accordion .faq-summary::marker {
+    display: none;
+  }
+  .faq-accordion details[open] .faq-icon {
+    transform: rotate(180deg);
+  }
 }
 
 html,
@@ -263,4 +281,27 @@ body {
 }
 body {
   position: relative;
+}
+
+/* Blog prose: align with site dark theme (bg #0a0a0f, blue/purple/pink accents) */
+.blog-prose.prose {
+  --tw-prose-body: rgb(255 255 255 / 0.8);
+  --tw-prose-headings: rgb(255 255 255 / 0.95);
+  --tw-prose-links: rgb(96 165 250);
+  --tw-prose-bold: rgb(255 255 255);
+  --tw-prose-code: rgb(255 255 255 / 0.9);
+  --tw-prose-pre-bg: rgb(0 0 0 / 0.4);
+  --tw-prose-pre-border: rgb(255 255 255 / 0.1);
+}
+.blog-prose.prose table {
+  @apply border border-white/10 rounded-xl overflow-hidden;
+}
+.blog-prose.prose th {
+  @apply bg-white/5 border-b border-white/10 px-4 py-3 text-left text-white/90 font-semibold;
+}
+.blog-prose.prose td {
+  @apply border-b border-white/5 px-4 py-3 text-white/80;
+}
+.blog-prose.prose blockquote {
+  @apply border-l-4 border-blue-500/50 pl-4 italic text-white/70;
 }

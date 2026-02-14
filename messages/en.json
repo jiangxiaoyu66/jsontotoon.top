@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "converter": "Converter",
+    "about": "About",
+    "features": "Features",
+    "blog": "Blog",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "badge": "Optimize Your LLM Costs",
+    "title": "JSON to TOON & TOON to JSON",
+    "subtitle": "Free Converter - Reduce API Costs by 50%",
+    "description": "Convert JSON to TOON or TOON to JSON instantly and save on",
+    "savings": "OpenAI, ChatGPT, Claude API costs by 30-50%",
+    "tabJson2Toon": "JSON → TOON",
+    "tabToon2Json": "TOON → JSON",
+    "jsonInput": "JSON Input",
+    "toonOutput": "TOON Output",
+    "toonInput": "TOON Input",
+    "jsonOutput": "JSON Output",
+    "convertToToon": "Convert to TOON →",
+    "convertToJson": "Convert to JSON →",
+    "clear": "Clear",
+    "copy": "Copy",
+    "tokenSavings": "Token Savings",
+    "invalidJson": "Invalid JSON format. Please check your input.",
+    "invalidToon": "Invalid TOON format. Please check your input.",
+    "copied": "Copied to clipboard!"
+  },
+  "about": {
+    "title": "What is TOON Format?",
+    "description": "TOON is a minimal text representation of JSON designed to reduce LLM API token consumption by 30-50%. It preserves all JSON data structures while using fewer characters, making it ideal for cost-sensitive AI applications."
+  },
+  "seo": {
+    "siteName": "JSON to TOON",
+    "title": "JSON to TOON & TOON to JSON – Reduce LLM Tokens 30-50%",
+    "description": "Free JSON to TOON and TOON to JSON converter. Reduce LLM API tokens by 30-50%. Optimize ChatGPT, Claude, OpenAI costs. No signup required.",
+    "keywords": "JSON to TOON, TOON to JSON, json to toon converter, toon to json converter, json2toon, toon2json, TOON format, TOON converter, LLM token reduction, reduce LLM tokens, LLM cost optimization, reduce API tokens, minimal JSON format, JSON compression for LLM, OpenAI token reduction, ChatGPT API cost, Claude token savings, free JSON converter, free json to toon converter online, reduce LLM API tokens by 50%, ChatGPT API cost optimizer, OpenAI token reduction tool, minimize JSON tokens for AI, LLM developers token optimization, AI API cost reduction for startups, token-efficient JSON format"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "What is JSON to TOON and TOON to JSON?",
+      "answer": "JSON to TOON converts standard JSON to TOON format, while TOON to JSON converts it back. Both conversions are designed for LLM token reduction, helping you reduce API costs by 30-50% when working with ChatGPT, Claude, or OpenAI."
+    },
+    "q2": {
+      "question": "How to reduce LLM token usage?",
+      "answer": "Use our JSON to TOON converter to minimize token consumption by 30-50%. TOON format removes unnecessary characters while preserving data structure, making it ideal for LLM API cost optimization."
+    },
+    "q3": {
+      "question": "Can I convert TOON to JSON?",
+      "answer": "Yes! Our TOON to JSON converter lets you convert TOON back to standard JSON format instantly. The conversion is lossless - all your data structure and values are preserved perfectly."
+    },
+    "q4": {
+      "question": "How much can I save on LLM API costs?",
+      "answer": "Typically 30-50% fewer tokens compared to standard JSON. Use the JSON to TOON converter to see exact savings for your payloads. This translates to significant cost reduction for OpenAI, ChatGPT, and Claude APIs."
+    },
+    "q5": {
+      "question": "How to optimize JSON for LLM?",
+      "answer": "Use JSON to TOON conversion. Our converter automatically removes redundant characters, minimizes whitespace, and creates token-efficient representations perfect for LLM applications."
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Updates, guides, and tips on TOON format and reducing LLM token usage.",
+    "empty": "No posts yet.",
+    "back": "Back to Blog"
+  }
+}
