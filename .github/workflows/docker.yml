@@ -72,3 +72,10 @@ jobs:
           TAGS: ${{ steps.meta.outputs.tags }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+
+      - name: Trigger dokploy redeploy
+        # ⚠️ 使用 Dokploy deployments 的 Webhook URL
+        run: |
+          curl -X GET https://dokploy.xspacehub.com/api/deploy/SoN-ihHla7d0SUUZ513PH
+
+
